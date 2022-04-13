@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 
 import com.example.networkingwithretrofitchapter5.adapter.MainAdapter
@@ -37,6 +38,9 @@ class HomeFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fetchAllData()
+        binding.homeButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRegisterFragment())
+        }
     }
     private fun fetchAllData(){
         CarsApi.instance.AllCar().enqueue(object : Callback<List<GetAllCarResponseItem>>{
